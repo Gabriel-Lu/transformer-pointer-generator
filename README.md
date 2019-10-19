@@ -1,21 +1,15 @@
-# A Abstractive Summarization Implementation with Transformer and Pointer-generator
-when I wanted to get summary by neural network, I tried many ways to generate abstract summary, but the result was not good.
-when I heared 2018 byte cup, I found some information about it, and the champion's solution attracted me, but I found some websites,
-like github gitlab, I didn't find the official code, so I decided to implement it.
-
 ## Requirements
 * python==3.x (Let's move on to python 3 if you still use python 2)
 * tensorflow==1.12.0
-* tqdm>=4.28.1
-* jieba>=0.3x
-* sumeval>=0.2.0
+* tqdm=4.36.1
+* jieba>=0.39
+* sumeval=0.2.2
 
 ## Model Structure
 ### Based
 My model is based on [Attention Is All You Need](https://arxiv.org/abs/1706.03762) and [Get To The Point: Summarization with Pointer-Generator Networks](https://arxiv.org/abs/1704.04368)
 ### Change
-* The pointer-generator model has two mechanisms, which are **copy mechanism** and **coverage mechanism**, I found some materials, 
-they show the Coverage mechanism doesn't suit short summary, so I didn't use this mechanism, just use the first one.
+* The pointer-generator model有两个机制： **copy mechanism** and **coverage mechanism**, 我们采用的是第二种。
 * Pointer generator model has a inadequacy, which can let the loss got nan, I tried some times and wanted to fix it,
 but the result was I can't, I think the reason was when calculate final logists, it will 
  extend vocab length to oov and vocab length, it will get more zeroes. so I delete the mechanism of extend final logists, just use their mechanism of 
